@@ -1,3 +1,4 @@
+import datetime
 import json
 from django.http import HttpResponse
 from django.views.decorators.http import require_POST
@@ -11,21 +12,21 @@ def submission(request):
     print(sub)
 
     try:
-        student = Student.objects.get(full_name=sub['submissionData']['Your name'][0])
+        student = Student.objects.get(id=sub['studentId'])
     except Student.DoesNotExist:
         student = Student()
-        student.full_name = sub['submissionData']['Your name'][0]
+        student.first_name = sub['first_name']
+        student.last_name = sub['last_name']
         student.save()
         print(student)
 
     try:
-        already_recorded = Submission.objects.get(student=student, quiz_name=sub['formName'])
+        already_recorded = Submission.objects.get(student=student, id=sub['exerciseId'])
     except Submission.DoesNotExist:
         print("Submission does not exists. Creating...")
         submission = Submission()
-        submission.time_submitted = sub['submissionData']['Timestamp'][0]
-        submission.quiz_name = sub['formName']
-        submission.score = sub['submissionData']['Score'][0]
+        submission.time_submitted = datetime.datetime.fromtimestamp(sub['timestamp']/1000.0)
+        submission.exercise_id = sub['exerciseId']
         submission.student = student
         submission.save()
         print(submission)

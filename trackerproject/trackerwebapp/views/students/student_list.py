@@ -31,11 +31,12 @@ def student_list(request):
                 where sc.initial is not 0
                     and (
                         s.first_name like ?
-                        or s.last_name like ?
-                    )
+                        or
+                        s.last_name like ?
+                        )
                 order by s.id desc
                 limit 50
-            """, (terms,terms,))
+            """, (terms, terms))
 
             all_students = []
             dataset = db_cursor.fetchall()
