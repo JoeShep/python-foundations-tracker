@@ -16,11 +16,11 @@
                 Cohort
                 <a class="link--sort" href="{% url 'submission_list' %}?order_by=cohort&direction=desc"> ⬇ </a>
             </div>
-            <div class="header header--classroom">
+            <!-- <div class="header header--classroom">
                 <a class="link--sort" href="{% url 'submission_list' %}?order_by=classroom&direction=asc"> ⬆ </a>
                 Classroom
                 <a class="link--sort" href="{% url 'submission_list' %}?order_by=classroom&direction=desc"> ⬇ </a>
-            </div>
+            </div> -->
             <div class="header header--exercise">
                 <a class="link--sort" href="{% url 'submission_list' %}?order_by=exercise&direction=asc"> ⬆ </a>
                 Exercise
@@ -58,9 +58,9 @@
                     </form>
                 {% endif %}
             </div>
-            <div class="submission__classroom">
+            <!-- <div class="submission__classroom">
                 {{ submission.classroom.title }}
-            </div>
+            </div> -->
             <div class="submission__exercise">
                 {{ submission.exercise }}
             </div>

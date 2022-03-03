@@ -23,7 +23,7 @@
         {% for student in students %}
         <section class="submission">
             <div class="submission__student">
-                <a href="{% url 'student_report' student.id %}">{{ student.first_name }} {{ student.last_name }}</a>
+                <a href="{% url 'student_report' student.id %}">{{ student }}</a>
             </div>
             <div class="submission__cohort">
                 {% if student.cohort.id is not None %}
